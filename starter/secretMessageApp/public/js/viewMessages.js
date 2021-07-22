@@ -1,12 +1,12 @@
 document.querySelector("#viewMsg").addEventListener("click", (e) => {
-    const userPasscodeGuess = document.querySelector("passcode").value;
+    const userPasscodeGuess = document.querySelector("#passcode").value;
 
     const messagesRef = firebase.database().ref();
     messagesRef.on("value", (snapshot) => {
         const data = snapshot.val();
         for(let key in data) {
             if(data[key].passcode == userPasscodeGuess){
-                display(data[key]);
+                display(data[key].message);
             }
         }
     });
@@ -14,7 +14,7 @@ document.querySelector("#viewMsg").addEventListener("click", (e) => {
 
 function display(message){
     console.log(message);
-    document.querySelector("#message").innerHTML = messageObject.message;
+    document.querySelector("#message").innerHTML = message;
     
 }
 
